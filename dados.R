@@ -1,4 +1,5 @@
-dados_totais <- read.csv("dadostotais_sem_zeros.csv", header = TRUE, sep = ",")
+dados_totais <- read.csv("dados_totais_com_zeros.csv", header = TRUE, sep = ",")
+
 
 library(vegan)
 library(ggplot2)
@@ -7,7 +8,7 @@ library(dplyr)
 library(RColorBrewer)
 library(pheatmap)
 species_data <- dados_totais[,-1]
-rownames(species_data) <- dados_totais$Nome_do_taxon_
+rownames(species_data) <- dados_totais$Especie
 species_data_t <- t(species_data)
 richness <- specnumber(species_data_t)
 shannon <- diversity(species_data_t, index = "shannon")
@@ -23,3 +24,4 @@ diversity_indices <- data.frame(
   Berger_Parker = round(berger_parker, 3)
   )
 print(diversity_indices)
+
